@@ -64,7 +64,7 @@ export default {
         console.log('挂载完毕')
 
         // const socket = io('http://si1v3r.nat300.top');
-        const socket = io('http://localhost:3030');//connect to server
+        const socket = io('https://volcanoski-oscarfuel-3030.codio-box.uk/');//connect to server
     
         this.socket=socket
         this.getMsg(socket)
