@@ -15,11 +15,6 @@ const io = require('socket.io')(http, {
 });
 
 
-
-// app.get('*', (req, res) => {
-
-// });
-
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/public/index.html')
 })
@@ -29,21 +24,8 @@ var userInfo = [];
 
 io.on('connection', (socket) => {
   console.log('A user connected');
-  // io.emit('userinfo',socket);
-  // console.log('ip=>',socket.handshake.address.replace(/^.*:/, ''))
-  // console.log('allMessage=>',allMessage)
-  // socket.emit('allmsg',allMessage)
 
-  // socket.on('clicked', (data) => {
-  //   // console.log(data);
-  //   allMessage.push(data)
-  //   io.emit('ret', data);
-  // });
-  // socket.on('message', (data) => {
-  //   console.log('received message from client:', data);
-  //   allMessage.push(data)
-  // });
-
+// receive the user name and uuid from client
   socket.on('accountAndUuid', (data,callback) => {
     var flag=true
     console.log(`user ${data[0]} connected to the server, with the uuid ${data[1]}`);
@@ -64,9 +46,8 @@ io.on('connection', (socket) => {
     console.log('userInfo=>',userInfo)
     io.emit('userList',userInfo)
     callback(userInfo)
-    // socket.emit('accountAndUuid', userInfo)
   })
-
+//receive the message and store in server
   socket.on('submitMsg',(req,callback)=>{
     allMessage.push(req)
     console.log(allMessage)
@@ -76,13 +57,13 @@ io.on('connection', (socket) => {
 
   io.emit('allMessage',allMessage)
  
-
+//show all the users a exact user's status
   socket.on('status',(req)=>{
     console.log(req)
     io.emit('status',req)
   })
 
-
+//tell all the users that a user leave the chat room
   socket.on('disconnect', () => {
     console.log('A user disconnected');
     for(var a=0;a<userInfo.length;a++){
@@ -92,34 +73,9 @@ io.on('connection', (socket) => {
   });
 });
 
-
-
-
-// io.on('connection', (socket) => {
-//   console.log('A user connected');
-//   socket.on('disconnect', () => {
-//       console.log('A user disconnected');
-//   });
-// });
-
-
 http.listen(3030, () => {
   console.log('listening on port 3030');
 });
 
 
-// app.get('/', function (req, res) {
-//   res.send('hello my fucking friend')
-// })
 
-// app.get('/signIn', function (req, res) {
-//     res.sendFile(__dirname + '/public/index.html')
-//   })
-
-// app.get('/test',function(req,res){
-//     res.send({a:1,b:2,c:3})
-// })
-
-// app.listen(3030, function () {
-//   console.log('Example app listening on port 3030!')
-// })

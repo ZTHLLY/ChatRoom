@@ -1,5 +1,6 @@
 <!--  -->
 <template>
+  <!-- background and button -->
     <main class="main" style="margin: 0; padding: 0;">
         <section class="spotlight parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url('https://s2.loli.net/2022/10/30/GPsh4OSpYNrRKI9.jpg');background-size: cover;">
           <span class="mask bg-tertiary alpha-7"></span>
@@ -26,6 +27,7 @@
             </div>
           </div>
         </section>
+        <!-- CTF description -->
         <section class="slice sct-color-1">
           <div class="container">
             <div class="row cols-xs-space cols-sm-space align-items-center">
@@ -35,7 +37,7 @@
               <div class="col-md-6 col-lg-5 ml-lg-auto">
                 <div class="pr-md-4">
                   <h3 class="heading heading-3 strong-500">
-                    CTF challenges
+                    a CTFer
                   </h3>
                   <p class="lead text-gray mt-4">
                     Capture the Flag (CTF) in computer security is an exercise in which "flags" are secretly hidden in purposefully-vulnerable programs or websites. It can either be for competitive or educational purposes. And I am good at 'pwn' aspect
@@ -45,6 +47,7 @@
             </div>
           </div>
         </section>
+        <!-- My blog, email and github -->
         <section>
           <div class="container-fluid px-0">
             <div class="card-group flex-column flex-md-row">
@@ -80,7 +83,7 @@
       </section>
   
 
-  
+      <!-- hobby -->
       <section class="slice slice-lg">
         <div class="container">
           <div class="mb-5 text-center">
@@ -89,6 +92,7 @@
               <p class="lead mb-0">Reading and Sport</p>
             </div>
           </div>
+            <!-- reading -->
           <div class="row cols-md-space cols-sm-space cols-xs-space">
             <div class="col-lg-4">
               <div class="card border-0">
@@ -102,6 +106,7 @@
                 </div>
               </div>
             </div>
+            <!-- football -->
             <div class="col-lg-4">
               <div class="card border-0">
                 <img src="../../assets/images/prv/football.jpg" class="img-fluid img-center rounded z-depth-2">
@@ -114,6 +119,7 @@
                 </div>
               </div>
             </div>
+            <!-- travel -->
             <div class="col-lg-4">
               <div class="card border-0">
                 <img src="../../assets/images/prv/travel.jpg" class="img-fluid img-center rounded z-depth-2" style="height: 265px;">
@@ -180,6 +186,7 @@ export default {
         this.getuuid()
     },
     methods: {
+      // the same as Home page
         goToChat() {
 
             if (this.form.name.length == 0) {

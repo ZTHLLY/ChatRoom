@@ -10,7 +10,7 @@
 
 
     <div>
-
+        <!-- UserList, showing all user and their status -->
         <div class="userList">
 
             <el-table :data="tableData" height="500" stripe style="width: 100%">
@@ -18,7 +18,7 @@
                 <el-table-column prop="status" label="Status" />
             </el-table>
         </div>
-
+        <!-- the chat window -->
         <el-scrollbar max-height="500px" style="width: 1000px;display: inline-block;height: 500px;" class="chatRoom">
             <div v-for="item in message" :key="item"
                 :class="item.uuid == this.$route.query.uuid ? 'scrollbar-demo-item2' : 'scrollbar-demo-item'">
@@ -31,7 +31,7 @@
             </div>
         </el-scrollbar>
     </div>
-
+    <!-- input and submit -->
     <el-input style="width: 630px; margin-bottom: 68px;" @keydown.enter="submit" v-model="input"
         placeholder="Please input" />
     <el-button type="primary" @click="submit" style="margin-bottom: 68px;">submit</el-button>
@@ -54,7 +54,7 @@ export default {
     data() {
         return {
             input: '',
-            count: ['这里是用户发送的信息之一，内容长度可以随意变化'],
+            count: [''],
             message: [],
             tableData: [],
             socket: ''
@@ -64,9 +64,8 @@ export default {
         console.log('挂载完毕')
 
         // const socket = io('http://si1v3r.nat300.top');
-        const socket = io('http://localhost:3030');
-        
-
+        const socket = io('http://localhost:3030');//connect to server
+    
         this.socket=socket
         this.getMsg(socket)
 
@@ -86,11 +85,11 @@ export default {
                 var req={account: this.$route.query.account, uuid: this.$route.query.uuid, status: 'listening'}
                 this.socket.emit('status',req)
             }
-        }
+        }//listen the input value and change the status window
     },
     methods: {
         submit() {
-            if (this.input.length == 0) alert('内容不可以为空')
+            if (this.input.length == 0) alert('The input can not be empty')
             else {
                 this.submitMsg(this.input)
                 this.input = '';
@@ -98,13 +97,7 @@ export default {
 
         },
         async getMsg(socket) {
-            // const socket = io('http://localhost:3030');
 
-
-            // 发送消息给服务器
-            // await new Promise ((resolve)=>{
-            //    socket.emit('message', this.input,resolve); 
-            // })
             socket.on('connect', () => {
                 console.log('connected to server');
             });
@@ -154,7 +147,7 @@ export default {
             })
 
             // socket.disconnect();
-        },
+        },//load the history message
         async submitMsg(msg) {
             const socket=this.socket
 
@@ -172,7 +165,7 @@ export default {
             this.message = result
             console.log(this.message)
 
-        },
+        },//submit the user's message
 
     }
 }

@@ -1,7 +1,7 @@
 <!--  -->
 <template>
 
-
+<!-- background image and button -->
     <section class="spotlight parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url('https://s2.loli.net/2022/11/27/SdAPiMOEJ3FLfTt.jpg');background-size: cover;">
         <span class="mask bg-tertiary alpha-7"></span>
         <div class="spotlight-holder py-lg pt-lg-xl">
@@ -36,6 +36,7 @@
                 <img src="../../assets/images/prv/device-1.png" class="img-fluid img-center">
               </div>
             </div>
+            <!-- My name and basic information -->
             <div class="col-lg-5 order-lg-1">
               <div class="row-wrapper">
                 <div class="row">
@@ -125,14 +126,15 @@ export default {
     },
     methods: {
         goToChat() {
-
+            // get user's name
             if (this.form.name.length == 0) {
-                alert('用户名不可为空');
+                alert('the user name can not be empty');
                 return
             }
             this.dialogFormVisible = false;
             this.$router.push({ name: "chat", query: { account: this.form.name,uuid: this.uuid } })
         },
+        // give every user a uuid
         getuuid() {
             const uuid = uuidv4();
             this.uuid=uuid;
