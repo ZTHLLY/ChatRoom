@@ -273,12 +273,12 @@ footer {
 
 header {
     margin-bottom: 50px;
-    background-color: #f8d2d2;
+    background-color: blue;
     height: 50px;
 }
 
 header h1 {
-    color: black;
+    color: white;
 }
 
 .userList {
